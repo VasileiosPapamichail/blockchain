@@ -13,12 +13,6 @@
   </head>
 </html>
 
-
-<head>
-    
-</head>
-
-
 <body>
 
 <h1 class="text-center">Lottery - Ballot</h1>
@@ -259,6 +253,8 @@
 
         function isBeneficiary(address){
            var beneficiary = 0xc71206a564f1d28c1d6b5b205f48f6ee155f8a10;
+		   fromAddress = accounts[0];
+		   var address = $('#from-Address').html(fromAddress);
            
            if (beneficiary != address)
            {
