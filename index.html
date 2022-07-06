@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Lottery - Ballot</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+                    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Lottery - Ballot</title>
+  </head>
+</html>
+
+
+<head>
+    
+</head>
+
+
+<body>
+
+<h1 class="text-center">Lottery - Ballot</h1>
+    <div>
+        <body>
+          <table class="table table-responsive, text-center">
+            <tr>
+                <th>Car</th>
+                <th>Phone</th>
+                <th>Computer</th>
+            </tr>
+            <tr>
+                <th><img src="car.jpg" style="width:400px;height:300px;" <p><a id="click1"></a></p></th>
+                <th><img src="phone.jpg" style="width:250px;height:300px;"><p><a id="click2"></a></p></th>
+                <th><img src="computer.jpg" style="width:500px;height:300px;"><p><a id="click3"></a></p></th>
+            </tr>
+            <tr>
+                <td>
+                    <form id="bid-form0">
+                        <button type="submit" class="btn btn-primary" onClick="onClick1()">Bid</button>
+                    </form>
+                </td>
+                <td>
+                    <form id="bid-form1">
+                        <button type="submit" class="btn btn-primary" onClick="onClick2()">Bid</button>
+                    </form>
+                </td>
+                <td>
+                    <form id="bid-form2">
+                        <button type="submit" class="btn btn-primary" onClick="onClick3()">Bid</button>
+                    </form>
+                </td>
+            </tr>
+             <br></br>
+             <br></br>
+             <br></br>
+          </table>
+
+          <table class = "table table">  
+              <tr>
+                  <td><h2>Current User</h2></td>
+                  <td><h2>Owner's Address</h2></td>
+              </tr>
+              <tr>
+                <td> 
+                    <h2>
+                        <form id="contract-form">
+                            <div class="form-group">
+                                <div id="from-Address">Current Address: Όταν συνδεθεί το Metamask, εδώ εμφανίζεται η διεύθυνσή σας</div>
+                            </div>
+                        </form>
+                    </h2> 
+                </td>
+                <td> 
+                    <h2>
+                        <form id="owner-form">                                                     
+                            <div id="owner-display">0xfB96bF84060E89329F1E8Efc54676001E82728B0</div>                           
+                        </form>
+                    </h2> 
+                </td>
+              </tr>
+              <tr>
+                  <td>
+                      <button type="submit" class="btn btn-primary" id="btnReveal" onClick="revealBids()">Reveal</button>
+                  </td>
+                  <td>
+                    <form id="withdraw-form">
+                        <button type="submit" class="btn btn-primary" id="btnWithdraw" onClick="withdraw()">Withdraw</button>
+                    </form> 
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                    <form id="bid-form2">
+                      <button type="submit" id="btnAMW" class="btn btn-primary" onClick="amIWinner()">Am I Winner</button>
+                    </form>
+                  </td>
+                  <td>
+                      <button type="btnDeclare" id="btnDeclare" class="btn btn-primary">Declare Winner</button>
+                  </td>
+              </tr>
+              <tr>
+                <td>
+
+                </td>
+                <td>
+                    <form id="destroy-form">
+                        <button type="submit" class="btn btn-danger" id="btnDestroy" onClick="destroy()">Destroy ⚠️</button>
+                    </form>
+                </td>
+              </tr>
+              <tr>
+                <td>
+
+                </td>
+                <td>
+                    <form id="transfer-form">
+                        <button type="submit" class="btn btn-danger" id="btnTransfer" onClick="transfer()">Transfer ⚠️</button>
+                    </form>
+                </td>
+              </tr>
+              <tr>
+                <td>
+
+                </td>
+                <td>
+                    <form id="reset-form">
+                        <button type="submit" class="btn btn-danger" id="btnReset" onClick="reset()">Reset ⚠️</button>
+                    </form>
+                </td>
+              </tr>
+          </table>
+          
+        </body>
+      </div>
+      <script src="web.min.js"></script>
+      <!-- var abi = [...] -->
+      <script src="finalTask.js"></script>
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+  
+      <script>
+          window.addEventListener('load', async () => {
+              if (window.ethereum) {
+                  const web3 = new Web3(window.ethereum);
+                  try {
+                      // Request account access if needed
+                      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                      // Acccounts now exposed
+                  } catch (error) {
+                      console.error(error);
+                  }
+                  // Legacy dapp browsers...
+              } 
+          });
+          if (typeof web3 != 'undefined') {
+              web3 = new Web3(web3.currentProvider);
+          }
+  
+          var fromAddress;
+          web3.eth.getAccounts((error, accounts) => {
+              if (error) {
+                  console.log('error:' + error);
+                  return;
+              } else {
+                  fromAddress = accounts[0];
+                  $('#from-Address').html(fromAddress);
+              }
+          });
+  
+          if (window.ethereum) {
+              window.ethereum.on('accountsChanged', (accounts) => {
+                  web3.eth.getAccounts((error, accounts) => {
+                      if (error) {
+                          console.log('error:' + error);
+                          return;
+                      } else {
+                          fromAddress = accounts[0];
+                          $('#from-Address').html('<b>' + fromAddress + '</b>');
+                      }
+                  });
+              });
+          }
+
+        //change this to the ACTUAL contract address that you created on truffle migrate
+        var contractAddress = "0xc71206a564f1d28c1d6b5b205f48f6ee155f8a10";
+        var ApprovalContract = new web3.eth.Contract(abi, contractAddress);
+        var result;
+
+        // click counter for reveal function
+        var click1 = 0;
+        var click2 = 0;
+        var click3 = 0;
+
+        function onClick1() {
+            click1 += 1;
+            
+            document.getElementById("click1").style.visibility = "hidden";
+            document.getElementById("click1").innerHTML = click1;
+        };
+
+        function onClick2() {
+            click2 += 1;
+            
+            document.getElementById("click2").style.visibility = "hidden";
+            document.getElementById("click2").innerHTML = click2;
+        };
+
+        function onClick3() {
+            click3 += 1;
+            
+            document.getElementById("click3").style.visibility = "hidden";
+            document.getElementById("click3").innerHTML = click3;
+        };
+
+        function revealBids() {
+
+            var x = document.getElementById("click1");
+            var y = document.getElementById("click2");
+            var z = document.getElementById("click3");
+
+            x.style.visibility = "visible";
+            y.style.visibility = "visible";
+            z.style.visibility = "visible"; 
+        }
+
+        function amIWinner() {
+
+        }
+
+        function withdraw() {
+            
+        }
+
+        function destroy() {
+
+        }
+
+        function transfer() {
+            
+        }
+
+        function reset() {
+
+        }
+
+        function isBeneficiary(address){
+           var beneficiary = "0xc71206a564f1d28c1d6b5b205f48f6ee155f8a10";
+           
+           if (beneficiary != address)
+           {
+                document.getElementById('btnWithdraw').style.visibility = 'hidden';
+                document.getElementById('btnDeclare').style.visibility = 'hidden';
+                document.getElementById('btnDestroy').style.visibility = 'hidden';
+                document.getElementById('btnTransfer').style.visibility = 'hidden';
+                document.getElementById('btnReset').style.visibility = 'hidden';
+           }
+        }
+
+        window.onload = isBeneficiary;
+
+        //make sure that addresses are legit
+        $('#contract-form').submit(async () => {
+            event.preventDefault();
+            $('#from-Address').html(fromAddress);
+            //var toAddress = $('#toAddress').val();
+            
+            // make sure the ETH is > 0.01
+            //var amount = 0.02;
+            //if (isNaN(amount) || amount <= 0.01) {
+            //    alert('Πρέπει να στείλετε περισσότερα από 0.01 ETH');
+            //    return;
+            //}
+
+            // all is good, let's call our contract deposit
+            //ApprovalContract.methods.deposit(toAddress).send(
+            //    { from: fromAddress, gas: 100000, value: web3.utils.toWei(amount.toString(), 'ether') },
+            //    (error, result) => {
+            //        if (error) {
+            //            console.log('error: ' + error);
+            //            $('#deposit-result').html('Error: <b>' + error.message + '</b>');
+            //        }
+            //        else {
+            //            $('#deposit-result').html('Success TX: <b>' + result + '</b>');
+            //        }
+            //    });
+        });
+
+        $('#get-balance-form').submit(async () => {
+            event.preventDefault();
+            result = await web3.eth.getBalance(contractAddress);
+            console.log('balance: ' + result);
+            $('#the-balance').html('<b>Τρέχον υπόλοιπο: </b>' + web3.utils.fromWei(result));
+        });
+
+        $('#bid-form0').submit(async () => {
+            event.preventDefault();
+            result = await ApprovalContract.methods.bid(0).call();
+            console.log('result: ' + JSON.stringify(result));
+            alert('Succesfully bidded on item "Car"');
+        });
+
+        $('#bid-form1').submit(async () => {
+            event.preventDefault();
+            result = await ApprovalContract.methods.bid(1).call();
+            console.log('result: ' + JSON.stringify(result));
+            alert('Succesfully bidded on item "Phone"');
+        });
+
+        $('#bid-form2').submit(async () => {
+            event.preventDefault();
+            result = await ApprovalContract.methods.bid(2).call();
+            console.log('result: ' + JSON.stringify(result));
+            alert('Succesfully bidded on item "Computer"');
+        });
+
+        $('#owner-form').submit(async () => {
+            event.preventDefault();
+            //result = await ApprovalContract.methods.viewOwner().call();
+            //console.log('result: ' + JSON.stringify(result));
+            $('#owner-display').html('Owner Address: <b>' + result[0] + '</b>');
+        });
+
+        $('#withdraw-form').submit(async () => {
+            event.preventDefault();
+            result = await ApprovalContract.methods.withdraw().call();
+            console.log('result: ' + JSON.stringify(result));
+            alert('Contract balance has been withdrawn');
+        });
+
+        $('#destroy-form').submit(async () => {
+            event.preventDefault();
+            result = await ApprovalContract.methods.destroy().call();
+            console.log('result: ' + JSON.stringify(result));
+            alert('Contract has been destroyed!');
+        });
+
+        $('#transfer-form').submit(async () => {
+            event.preventDefault();
+            let addr = prompt("Enter the new owner of the contract","0x153dfef4355E823dCB0FCc76Efe942BefCa86477");
+            result = await ApprovalContract.methods.transferOwnership(addr).call();
+            console.log('result: ' + JSON.stringify(result));
+            alert('Contract has been transfered!');
+        });
+
+        $('#reset-form').submit(async () => {
+            event.preventDefault();
+            result = await ApprovalContract.methods.reset().call();
+            console.log('result: ' + JSON.stringify(result));
+            alert('Contract has been reset!');
+        });
+    </script>
+
+
+</body>
